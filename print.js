@@ -50,14 +50,28 @@ function p_square(c,x,y) {c.strokeRect(0.5+p_gridX(x), 0.5+p_gridY(y), caseW-1, 
 
 function p_clearSquare(c,x,y) {c.clearRect(0.5+p_gridX(x), 0.5+p_gridY(y), caseW-1, caseH-1)}
 
-function p_fold(c,xOrY,v) {
-	c.setLineDash([10, 15]);
-	p_line(c,xOrY,v);
+function p_lineFold(c,xOrY,v) {
+	p_fold(c,(v)?xOrY:0, (v)?0:xOrY, (v)?xOrY:nbCasesW, (v)?nbCasesH:xOrY);
+}
+
+function p_fold(c,x,y,x2,y2) {
+	c.setLineDash([10, 10]);
+	p_line(c,x,y,x2,y2);
 	c.setLineDash([]);
 }
 
-function p_line(c,xOrY,v) {
-	c.strokeRect((v)?p_gridX(xOrY):0, (v)?0:p_gridY(xOrY), (v)?0:width, (v)?height:0);
+
+function p_line(c,x,y,x2,y2) {
+	c.beginPath();
+	c.moveTo(p_gridX(x),p_gridY(y));
+	console.log("moveTo",p_gridX(x),p_gridY(y))
+	c.lineTo(p_gridX(x2),p_gridY(y2));
+	console.log("lineTo",p_gridX(x2),p_gridY(y2));
+	c.stroke();
+}
+function p_lineRect(c,xOrY,v) {
+	// c.strokeRect((v)?p_gridX(xOrY):0, (v)?0:p_gridY(xOrY), (v)?0:width, (v)?height:0);
+	p_line(c,(v)?xOrY:0, (v)?0:xOrY, (v)?xOrY:width, (v)?height:xOrY);
 }
 
 function p_clearLine (c,xOrY,v) {

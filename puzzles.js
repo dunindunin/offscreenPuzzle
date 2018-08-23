@@ -30,8 +30,8 @@ var puzzles = [
 			Y = randCoor(0,1);
 			x = 1+rand((nbCasesW)/2|0);
 
-			p_fold(c,x,1);
-			p_fold(c,1,1);
+			p_lineFold(c,x,1);
+			p_lineFold(c,1,1);
 			
 			for(i=0;i<5;i++) {
 				y=Y[i];
@@ -54,9 +54,9 @@ var puzzles = [
 
 			p_clearLine(c,nbCasesH-1);
 
-			p_fold(c,nbCasesW-w,1);
-			p_fold(c,(nbCasesW-w+1)/2,1);
-			p_line(c,nbCasesH-1);
+			p_lineFold(c,nbCasesW-w,1);
+			p_lineFold(c,(nbCasesW-w+1)/2,1);
+			p_lineRect(c,nbCasesH-1);
 
 			do {		
 				r=0;
@@ -95,7 +95,7 @@ var puzzles = [
 			x4 = cx+(x3-cx)*2;
 			console.log("cx",cx,"x2",x2,"x",x,"x3",x3,"x4",x4);
 
-			[x,x2,x3,x4].forEach(function(e){p_fold(c,e,1)})
+			[x,x2,x3,x4].forEach(function(e){p_lineFold(c,e,1)})
 			
 			for(i=0;i<5;i++) {
 				y=Y[i];
@@ -118,10 +118,10 @@ var puzzles = [
 			X,n;
 
 			console.log("yc",yc);
-			p_fold(c,yc);
-			p_fold(c2,yc);
-			p_fold(c2,yc+y);
-			p_fold(c2,yc-y);
+			p_lineFold(c,yc);
+			p_lineFold(c2,yc);
+			p_lineFold(c2,yc+y);
+			p_lineFold(c2,yc-y);
 			p_write("◉",c2,0,yc+y);
 			p_write("◉",c,0,yc-y-1);
 
@@ -182,5 +182,5 @@ function testSame(X,Y){
 	return false;
 }
 
-
-nextPuzzle(puzzles.length);
+console.log("NB PUZZLES",puzzles.length);
+nextPuzzle(5);
