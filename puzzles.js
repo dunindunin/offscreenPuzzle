@@ -134,6 +134,37 @@ var puzzles = [
 		}
 	},
 	{
+		t:"Two again",
+		f:function(){
+			var c = p_addCanvas(1),
+			c2 = p_addCanvas(),
+			r="",
+			XY,n,n2;
+
+			XY = randCoor();
+			console.log("XY",XY);
+
+			for(i=0;i<nbCasesW;i++) {
+				for(j=0;j<nbCasesH;j++) {
+					n = rand();
+					if(i==XY.X[0] && j==XY.Y[0]) {
+						XY.X.shift();
+						XY.Y.shift();
+						r += n;
+						p_write(r[r.length-1],c,i,j);
+						p_write(r[r.length-1],c2,i,j);
+					} else {
+						do {n2=rand();} while(n == n2);
+						p_write(n,c,i,j);
+						p_write(n2,c2,i,j);
+					}
+				}
+			}
+				
+			return r;
+		}
+	},
+	{
 		t:"On board!",
 		f:function(){
 			var c = p_addCanvas(1),
@@ -209,4 +240,4 @@ function testSame(X,Y){
 }
 
 console.log("NB PUZZLES",puzzles.length);
-nextPuzzle(5);
+nextPuzzle(6);
