@@ -23,12 +23,13 @@ canvas {
 .c {
 	position:relative;
 	margin-bottom:-0.8cm;
+	border: solid 1px blue;
 }
 .c:before {
 	content: "✂";
-    top: 0.5em;
+    top: 0.6cm;
     position: absolute;
     font-size: 0.8cm;
+    line-height: 0.8cm;
     left: 1.5cm;
-    }
 }
