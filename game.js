@@ -40,8 +40,8 @@ function play(id) {
 
 function launch() {
 	console.log("launch");
-	setMachine();
 	titre.textContent = "Offscreen puzzles";
+	setMachine();
 }
 
 console.log("test");

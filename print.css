@@ -23,7 +23,6 @@ canvas {
 .c {
 	position:relative;
 	margin-bottom:-0.8cm;
-	border: solid 1px blue;
 }
 .c:before {
 	content: "✂";
