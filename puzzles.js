@@ -209,6 +209,35 @@ var puzzles = [
 				
 			return r;
 		}
+	},
+	{
+		t:"Arrow",
+		f:function(){
+			var c = p_addCanvas(1),
+			c2 = p_addCanvas(1),
+			r="",
+			h2=nbCasesH/2,
+			X,y;
+
+			y = (6 + rand(nbCasesW-nbCasesH-6))/2|0;
+
+			p_fold(c2,0,0,y*2,nbCasesH);
+			p_fold(c2,0,nbCasesH,y*2,0);
+			p_lineFold(c2,y,1);
+			p_lineFold(c2,y*2,1);
+			p_write("◉",c2,y*2+nbCasesH,nbCasesH-1);
+
+			do{X = randCoor(1)} while(X[0]<h2);
+
+			for(i=0;i<5;i++) {
+				n = rand();
+				r+= n;
+				p_write("◉",c,X[i]-(h2|0),nbCasesH-1);
+				p_write(r[i],c,X[i], y);
+			}
+				
+			return r;
+		}
 	}
 ];
 
@@ -240,4 +269,4 @@ function testSame(X,Y){
 }
 
 console.log("NB PUZZLES",puzzles.length);
-nextPuzzle(6);
+nextPuzzle(puzzles.length);

@@ -1,10 +1,11 @@
 var nbCanvas,
 width = 1181, // 20cm 150dpi
-height = 591, // 10cm 150dpi
+//height = 591, // 10cm 150dpi
 nbCasesW = 20, // min 6 and nbCases!h/2+1
 nbCasesH = 9, // min 4, odd is better (cf Hide and Seek)
 caseW = width/nbCasesW,
-caseH = height/nbCasesH;
+caseH = caseW,
+height = nbCasesH*caseH; // more simple to make squares
 
 
 function p_setTitle(t) {
