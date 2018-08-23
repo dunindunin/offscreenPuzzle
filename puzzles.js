@@ -238,6 +238,26 @@ var puzzles = [
 				
 			return r;
 		}
+	},
+	{
+		t:"End with a joke",
+		f:function(){
+			var c = p_addCanvas(),
+			r="",
+			rr="";
+
+			while (r.indexOf("9") == -1) {
+				for(i=0;i<5;i++) {
+					n = (rand(2));
+					r=((n)?9:8)+r;
+					rr+= (n)?6:8;
+				}
+			} 
+
+			c.fillText(rr, width/2, height/2);
+				
+			return r;
+		}
 	}
 ];
 
