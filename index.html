@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>OFFSCREEN PUZZLES</title>
+
+	
+
+	<style>
+		html, body,#g,#p,p {
+			margin: 0;
+			width: 100%;
+			font-size:10vh;
+			user-select: none;
+		}
+		#p{
+			display:none;
+		}
+		#g p {
+			line-height: 35vh;
+			height:35vh;
+		}
+		p{
+			text-align: center;
+		}
+		.n {
+			display:inline-block;
+			width: 15%;
+
+			position: relative;
+		}
+		.n:before,.n:after {
+			content:"△";
+			position: absolute;
+			left:0;
+			width: 100%;
+			top:-1em;
+		}
+		.n:after {
+			content:"▽";
+			top:1em;
+		}
+		.h:before,.h:after {
+			content:'';
+		}
+	</style>
+
+	<link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+	<div id="g"><p id="t">Loading</p><p id="m"></p></div>
+	<div id="p"><div class="c">game div</div></div>
+	<audio id="a"></audio><audio id="b"></audio>
+
+	<!-- scripts -->
+		<script src="game.js"></script>
+		<script src="print.js"></script>
+		<script src="puzzles.js"></script>
+	<!-- end scripts -->
+</body>
+</html>
