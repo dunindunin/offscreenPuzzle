@@ -108,6 +108,32 @@ var puzzles = [
 		}
 	},
 	{
+		t:"Hide and seek",
+		f:function(){
+			var c = p_addCanvas(1),
+			r="",
+			h2 = Math.ceil(nbCasesH/2),
+			y,x,y2,y3,w;
+
+			x = h2+rand(nbCasesW-nbCasesH-6);
+			y = 2+rand((nbCasesH-3)/2|0)*2;
+			y2 = y/2;
+			y3 = y+(nbCasesH-y+1)/2;
+
+			p_lineFold(c,y2);
+			p_lineFold(c,y3);
+			p_fold(c,x,y3,x-h2,y2);
+			p_fold(c,x+5,y3,x+h2+5,y2);
+			
+			for(i=0;i<5;i++) {
+				r += rand();
+				p_write(r[i],c,x+i,y);
+			}
+				
+			return r;
+		}
+	},
+	{
 		t:"On board!",
 		f:function(){
 			var c = p_addCanvas(1),

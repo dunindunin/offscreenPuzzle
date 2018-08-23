@@ -1,8 +1,8 @@
 var nbCanvas,
 width = 1181, // 20cm 150dpi
 height = 591, // 10cm 150dpi
-nbCasesW = 20, // min 6
-nbCasesH = 8, // min 4
+nbCasesW = 20, // min 6 and nbCases!h/2+1
+nbCasesH = 9, // min 4, odd is better (cf Hide and Seek)
 caseW = width/nbCasesW,
 caseH = height/nbCasesH;
 
@@ -27,6 +27,7 @@ function p_addCanvas(fill,c,d) {
 	c.font = '50px Arial';
 	c.textBaseline = "middle";
 	c.textAlign = "center";
+	c.lineWidth = 2;
 
 	if(fill) p_fill(c);
 
@@ -55,7 +56,7 @@ function p_lineFold(c,xOrY,v) {
 }
 
 function p_fold(c,x,y,x2,y2) {
-	c.setLineDash([10, 10]);
+	c.setLineDash([15, 15]);
 	p_line(c,x,y,x2,y2);
 	c.setLineDash([]);
 }
@@ -64,9 +65,9 @@ function p_fold(c,x,y,x2,y2) {
 function p_line(c,x,y,x2,y2) {
 	c.beginPath();
 	c.moveTo(p_gridX(x),p_gridY(y));
-	console.log("moveTo",p_gridX(x),p_gridY(y))
+	// console.log("moveTo",p_gridX(x),p_gridY(y))
 	c.lineTo(p_gridX(x2),p_gridY(y2));
-	console.log("lineTo",p_gridX(x2),p_gridY(y2));
+	// console.log("lineTo",p_gridX(x2),p_gridY(y2));
 	c.stroke();
 }
 function p_lineRect(c,xOrY,v) {
