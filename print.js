@@ -46,7 +46,10 @@ function p_fill(c) {
 	}
 }
 
-function p_write(char,c,x,y) {p_clearSquare(c,x,y);c.fillText(char, p_gridX(x)+caseW/2, p_gridY(y)+caseH/2);}
+function p_write(char,c,x,y,noClear) {
+	if(!noClear) p_clearSquare(c,x,y);
+	c.fillText(char, p_gridX(x)+caseW/2, p_gridY(y)+caseH/2);
+}
 
 function p_square(c,x,y) {c.strokeRect(0.5+p_gridX(x), 0.5+p_gridY(y), caseW-1, caseH-1)}
 

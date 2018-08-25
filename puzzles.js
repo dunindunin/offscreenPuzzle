@@ -214,7 +214,7 @@ var puzzles = [
 		t:"Arrow",
 		f:function(){
 			var c = p_addCanvas(1),
-			c2 = p_addCanvas(1),
+			c2 = p_addCanvas(),
 			r="",
 			h2=nbCasesH/2,
 			X,y;
@@ -234,6 +234,67 @@ var puzzles = [
 				r+= n;
 				p_write("◉",c,X[i]-(h2|0),nbCasesH-1);
 				p_write(r[i],c,X[i], y);
+			}
+				
+			return r;
+		}
+	},
+	{
+		t:"Elevator",
+		f:function(){
+			var c = p_addCanvas(1),
+			c2 = p_addCanvas(),
+			r="",
+			Y,h,x,l,decal,x2,y,cx;
+
+			h=nbCasesH-4;
+			x=(nbCasesW-nbCasesH)/2|0;
+			decal = (nbCasesW-2)/3|0;
+
+			do{Y=randCoor(0,1) } while(Y[0]<2 || Y[4]>2+h-1);
+			Y = Y.sort(function(a, b) {
+			  return rand(2)||-1;
+			});
+
+			c.setLineDash([5, 5]);
+
+			function cut (y) {
+				x2=x+nbCasesH;
+				p_write("✂",c,x+0.5,y-0.5,true);
+				p_line(c,x,y,x2,y);
+			}
+			cut(1);
+			cut(2);
+			cut(2+h);
+			cut(3+h);
+
+			cx = x+nbCasesH/2|0;
+			p_write("▽",c,cx,nbCasesH/2|0);
+			p_write("◉",c,cx,1);
+			p_write("◉",c,cx,nbCasesH-2);
+			p_write("▷",c2,nbCasesW-1,nbCasesH/2|0);
+
+			for(i=0;i<5;i++) {
+				if(i%2===0) {
+					// we have to put the upper first on the code
+					if(Y[i]>Y[i+1]) {
+						y = Y[i];
+						Y[i] = Y[i+1];
+						Y[i+1] = y;
+					}
+				}
+
+				r += rand();
+
+				l = rand(2);
+				p_write(r[i],c,(l)? x-1:x+nbCasesH, Y[i]);
+
+				x2 = nbCasesW-3-(i/2|0)*decal;
+				y =(l)?nbCasesH-1:0;
+
+				p_write("◉",c2,x2,nbCasesH/2|0);
+				p_write("◉",c2,x2-h+1,nbCasesH/2|0);
+				p_write((l)?"▽":"△",c2,x2-(h-Y[i])-1,y);
 			}
 				
 			return r;
@@ -289,4 +350,4 @@ function testSame(X,Y){
 }
 
 console.log("NB PUZZLES",puzzles.length);
-nextPuzzle(puzzles.length);
+nextPuzzle(9);
