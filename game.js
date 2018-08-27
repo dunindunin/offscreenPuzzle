@@ -54,9 +54,9 @@ function launch() {
 
 console.log("test");
 
-function nextPuzzle(p) {
-	if(solution=="START") p =parseInt(lS.getItem("level"));
-	level= (p)? p : level+1;
+function nextPuzzle(p,s) {
+	if(solution=="START") p = parseInt(lS.getItem("level"));
+	level= (p && ( s=JSON.parse(lS.getItem("save")) ) )? p : level+1;
 	p = (p)? puzzles.splice(0,p).pop() : puzzles.shift();
 	if(p) {
 		corpus= (p.c)? p.c : "0123456789";
@@ -64,7 +64,19 @@ function nextPuzzle(p) {
 		titre.textContent = p.t;
 		p_setTitle(p.t);
 		solution = p.f();
-		if(level!=1) save();
+		if(s) {
+			solution = s.s;
+			p_setTitle(p.t);
+			s.c.forEach(function(data) {
+				var c = p_addCanvas(),
+				i = document.createElement("img");
+				i.src = data;
+				i.addEventListener("load",function(){
+					c.drawImage(i,0,0);
+				})
+			});
+
+		} else if(level!=1) save();
 		to(window.print,500);
 	} else {
 		titre.textContent = "Thank you for playing!";
@@ -150,8 +162,16 @@ function sort(tab) {
 	});
 }
 
-function save() {
+function save(s,cs) {
 	lS.setItem("level",level);
+
+	s = {c:[],s:solution};
+	cs = paper.getElementsByTagName("canvas")
+	for(i=0;i<cs.length;i++) {
+		s.c.push(cs[i].toDataURL());
+	};
+	lS.setItem("save",JSON.stringify(s));
+
 	info("progression saved");
 }
 

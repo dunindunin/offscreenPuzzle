@@ -32,7 +32,7 @@ function p_addCanvas(fill,c,d) {
 
 	if(fill) p_fill(c);
 
-	console.log(c);
+	// console.log(c);
 
 	return c;
 }
