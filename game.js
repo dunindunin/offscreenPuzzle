@@ -1,5 +1,6 @@
 var gId = document.getElementById.bind(document),
 to = setTimeout,
+lS = localStorage,
 titre=gId("t"),
 machine = gId("m"),
 paper = gId("p"),
@@ -43,12 +44,18 @@ function play(id) {
 function launch() {
 	console.log("launch");
 	titre.textContent = "Offscreen puzzles";
+
+	if(lS.getItem("level") ) {
+		corpus += "E";
+		info("START to continue ; RESET to delete save",3000);
+	}
 	setMachine();
 }
 
 console.log("test");
 
 function nextPuzzle(p) {
+	if(solution=="START") p =parseInt(lS.getItem("level"));
 	level= (p)? p : level+1;
 	p = (p)? puzzles.splice(0,p).pop() : puzzles.shift();
 	if(p) {
@@ -57,7 +64,8 @@ function nextPuzzle(p) {
 		titre.textContent = p.t;
 		p_setTitle(p.t);
 		solution = p.f();
-		// to(window.print,1000);
+		if(level!=1) save();
+		to(window.print,500);
 	} else {
 		titre.textContent = "Thank you for playing!";
 		corpus = "BRAVO";
@@ -106,9 +114,19 @@ function testSolve() {
 	}
 	console.log("testSolvet", !canPlay);
 
+	if (canPlay && solution=="START") {
+		solution = "RESET";
+		if(!testSolve()) solution = "START";
+		else {
+			lS.removeItem("level");
+			return true;
+		}
+	}
+
 	if(!canPlay) {
 		winTxt = "GOOD!".split('');
 		displayWin();
+		return true;
 	}
 }
 
@@ -132,6 +150,10 @@ function sort(tab) {
 	});
 }
 
+function save() {
+	lS.setItem("level",level);
+	info("progression saved");
+}
 
 function info(txt,time) {
 	if(iDiv.className!="hide") clearTimeout(iTo);

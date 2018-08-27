@@ -350,4 +350,4 @@ function testSame(X,Y){
 }
 
 console.log("NB PUZZLES",puzzles.length);
-nextPuzzle(9);
+// nextPuzzle(9);
