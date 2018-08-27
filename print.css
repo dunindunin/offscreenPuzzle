@@ -12,7 +12,7 @@
 #p p,.c {
 	font-size:1cm;
 }
-#g {
+#g, #i {
 	display:none;
 }
 canvas {

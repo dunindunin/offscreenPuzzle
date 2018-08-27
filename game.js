@@ -4,6 +4,7 @@ titre=gId("t"),
 machine = gId("m"),
 paper = gId("p"),
 audio = [gId("a"),gId("b")],
+iDiv = gId("i"),
 corpus = "ARST",
 solution = "START",
 els =[],
@@ -13,7 +14,8 @@ canPlay=true,
 winTxt,
 i=-1,
 level=0,
-j;
+j,
+iTo;
 
 while (++i <10) {
 	// (i<5)? machine.innerHTML += `<div class="n" id="${i}"></div>` : gId(i-5).addEventListener("click",clickEl);
@@ -55,7 +57,7 @@ function nextPuzzle(p) {
 		titre.textContent = p.t;
 		p_setTitle(p.t);
 		solution = p.f();
-		to(window.print,1000);
+		// to(window.print,1000);
 	} else {
 		titre.textContent = "Thank you for playing!";
 		corpus = "BRAVO";
@@ -130,5 +132,16 @@ function sort(tab) {
 	});
 }
 
+
+function info(txt,time) {
+	if(iDiv.className!="hide") clearTimeout(iTo);
+	iDiv.textContent = txt;
+	iDiv.className = "";
+	iTo = to(infoHide, time||2000);
+}
+
+function infoHide() {
+	iDiv.className = "hide";
+}
 
 load();

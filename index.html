@@ -43,6 +43,17 @@
 		.h:before,.h:after {
 			content:'';
 		}
+		#i {
+			position: fixed;
+			font-size: 15px;
+			transition-duration: 1s;
+		}
+		#i.hide {
+			bottom: -15px;
+		}
+		#i:not(.hide) {
+			bottom: 15px;
+		}
 	</style>
 
 	<link rel="stylesheet" href="print.css" media="print">
@@ -50,6 +61,7 @@
 <body>
 	<div id="g"><p id="t">Loading</p><p id="m"></p></div>
 	<div id="p"><div class="c">game div</div></div>
+	<p id="i" class="hide">Petite info-bulle</p>
 	<audio id="a"></audio><audio id="b"></audio>
 
 	<!-- scripts -->
