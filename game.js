@@ -76,7 +76,7 @@ function nextPuzzle(p,s) {
 				})
 			});
 
-		} else if(level!=1) save();
+		} else save();
 		to(window.print,500);
 	} else {
 		titre.textContent = "Thank you for playing!";
