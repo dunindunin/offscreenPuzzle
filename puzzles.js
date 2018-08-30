@@ -28,7 +28,9 @@ var puzzles = [
 			Y,y,x;
 
 			Y = randCoor(0,1);
-			x = 1+rand((nbCasesW)/2|0);
+			x = 2+rand((nbCasesW-1)/2|0);
+
+			console.log("x",x);
 
 			p_lineFold(c,x,1);
 			p_lineFold(c,1,1);
@@ -53,6 +55,7 @@ var puzzles = [
 			console.log("w",w);
 
 			p_clearLine(c,nbCasesH-1);
+
 
 			p_lineFold(c,nbCasesW-w,1);
 			p_lineFold(c,(nbCasesW-w+1)/2,1);
@@ -350,4 +353,4 @@ function testSame(X,Y){
 }
 
 console.log("NB PUZZLES",puzzles.length);
-// nextPuzzle(9);
+nextPuzzle(2);
