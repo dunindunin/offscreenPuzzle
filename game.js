@@ -55,8 +55,9 @@ function launch() {
 console.log("test");
 
 function nextPuzzle(p,s) {
-	if(solution=="START") p = parseInt(lS.getItem("level"));
-	level= (p && ( s=JSON.parse(lS.getItem("save")) ) )? p : level+1;
+	if(!p && solution=="START") p = parseInt(lS.getItem("level"));
+	level= (p || ( s=JSON.parse(lS.getItem("save")) ) )? p : level+1;
+	console.log("p",p);
 	p = (p)? puzzles.splice(0,p).pop() : puzzles.shift();
 	if(p) {
 		corpus= (p.c)? p.c : "0123456789";
