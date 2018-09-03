@@ -48,15 +48,15 @@ var puzzles = [
 	{
 		t:"Arithmetic",
 		f:function(c,r,w,s,n,ni){
-			var c = p_addCanvas(1),
+			var c = p_addCanvas(/*1*/),
 			w=5-nbCasesW%2,
-			r,s,n,ni;
+			r,n,ni,k;
 
 			console.log("w",w);
 
+			for(i=0;i<nbCasesH*nbCasesW/2;i++) p_write(rand(),c,rand(nbCasesW-w),rand(nbCasesH));
+
 			p_clearLine(c,nbCasesH-1);
-
-
 			p_lineFold(c,nbCasesW-w,1);
 			p_lineFold(c,(nbCasesW-w+1)/2,1);
 			p_lineRect(c,nbCasesH-1);
@@ -64,17 +64,17 @@ var puzzles = [
 			do {		
 				r=0;
 				for(i=0;i<nbCasesH-1;i++) {
-					s=(i==0)?1:rand(2);
-					n = ""
-					for(j=0;j<w;j++) {
-						n+= rand();
-						p_write(n[j],c,nbCasesW-w+j,i);
+					n = "";
+					ni=0;
+					for(j=0,k=Math.min(1+rand(w),4);j<k;j++) {
+						ni = rand();
+						p_write(ni,c,nbCasesW-j-1,i);
+						n = ni+n;
 					}
+					console.log("n",n);
+					r += parseInt(n);
 
-					ni = parseInt(n);
-
-					(s)? r += ni: r -= ni;
-					(i==0)? p_clearSquare(c,0,0) : p_write((s)? "+" : "-",c,0,i);
+					(i==0)? p_clearSquare(c,0,0) : p_write("+",c,0,i);
 				}
 				// console.log("r",r);
 			} while(r<10000 || r>99999);
@@ -353,4 +353,5 @@ function testSame(X,Y){
 }
 
 console.log("NB PUZZLES",puzzles.length);
-nextPuzzle(2);
+localStorage.clear()
+nextPuzzle(3);
