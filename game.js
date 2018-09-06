@@ -8,6 +8,7 @@ audio = [gId("a"),gId("b")],
 iDiv = gId("i"),
 corpus = "ARST",
 solution = "START",
+dontSave = false,
 els =[],
 loaded=0,
 id,
@@ -77,7 +78,8 @@ function nextPuzzle(p,s) {
 				})
 			});
 
-		} else save();
+		} else if(!dontSave) save();
+		else dontSave = false;
 		to(window.print,500);
 	} else {
 		titre.textContent = "Thank you for playing!";
@@ -132,7 +134,7 @@ function testSolve() {
 		if(!testSolve()) solution = "START";
 		else {
 			lS.clear();
-			return true;
+			return dontSave = true;
 		}
 	}
 
