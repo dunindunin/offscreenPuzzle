@@ -352,6 +352,6 @@ function testSame(X,Y){
 	return false;
 }
 
-console.log("NB PUZZLES",puzzles.length);
-localStorage.clear()
-nextPuzzle(3);
+// console.log("NB PUZZLES",puzzles.length);
+// localStorage.clear()
+// nextPuzzle(7);
