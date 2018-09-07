@@ -84,7 +84,7 @@ var puzzles = [
 		}
 	},
 	{
-		t:"More dashes",
+		t:"More folds",
 		f:function(){
 			var c = p_addCanvas(1),
 			r="",
@@ -148,6 +148,29 @@ var puzzles = [
 			XY = randCoor();
 			console.log("XY",XY);
 
+			function test(t1,t2) {
+				var res = true;
+				if(t1==t2) res = false;
+				// some numbers are too similar
+				[
+					[4,1],
+					[6,3],
+					[6,5],
+					[8,0],
+					[8,3],
+					[8,5],
+					[8,6],
+					[9,3],
+					[9,5],
+					[9,6]
+				].forEach(function(el){
+					if(el[0]==t1 && el[1]==t2) res = false;
+					if(el[0]==t2 && el[1]==t1) res = false;
+				})
+
+				return res;
+			}
+
 			for(i=0;i<nbCasesW;i++) {
 				for(j=0;j<nbCasesH;j++) {
 					n = rand();
@@ -158,7 +181,7 @@ var puzzles = [
 						p_write(r[r.length-1],c,i,j);
 						p_write(r[r.length-1],c2,i,j);
 					} else {
-						do {n2=rand();} while(n == n2);
+						do {n2=rand();} while(!test(n,n2));
 						p_write(n,c,i,j);
 						p_write(n2,c2,i,j);
 					}
@@ -355,4 +378,4 @@ function testSame(X,Y){
 
 // console.log("NB PUZZLES",puzzles.length);
 // localStorage.clear()
-// nextPuzzle(3);
+// nextPuzzle(6);
