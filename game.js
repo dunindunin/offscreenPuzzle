@@ -44,7 +44,7 @@ function play(id) {
 
 function launch() {
 	console.log("launch");
-	titre.textContent = "Offscreen puzzles";
+	titre.textContent = "Offline puzzles";
 
 	if(lS.getItem("level") ) {
 		corpus += "E";
