@@ -71,6 +71,7 @@ var puzzles = [
 						p_write(ni,c,nbCasesW-j-1,i);
 						n = ni+n;
 					}
+					while(j<w) {p_clearSquare(c,nbCasesW-j-1,i);j++} // erase eventualy numbers of old tentatives
 					console.log("n",n);
 					r += parseInt(n);
 
@@ -354,4 +355,4 @@ function testSame(X,Y){
 
 // console.log("NB PUZZLES",puzzles.length);
 // localStorage.clear()
-// nextPuzzle(7);
+// nextPuzzle(3);
